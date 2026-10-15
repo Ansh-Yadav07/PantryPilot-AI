@@ -1,0 +1,165 @@
+{
+  "a_per_class_cap": 60,
+  "near_dist": 4,
+  "seed": 42,
+  "b_status": {
+    "included": 3340,
+    "dropped_leak_near_dup_of_val_or_test": 176,
+    "dropped_leak_near_dup_of_test": 18
+  },
+  "a_status": {
+    "holdout_val": 1967,
+    "unused_train_pool_over_cap": 14815,
+    "holdout_test": 1974,
+    "included_train": 840,
+    "excluded_broccoli_not_in_22_class_taxonomy": 1400,
+    "dropped_exact_duplicate": 4
+  },
+  "b_conversion": {
+    "train": {
+      "clipped": 8482,
+      "dup": 60,
+      "invalid": 0,
+      "objects": 64788,
+      "images": 2652,
+      "empty": 5
+    },
+    "valid": {
+      "clipped": 1045,
+      "dup": 12,
+      "invalid": 0,
+      "objects": 7988,
+      "images": 336,
+      "empty": 1
+    },
+    "test": {
+      "clipped": 1111,
+      "dup": 8,
+      "invalid": 0,
+      "objects": 8438,
+      "images": 352,
+      "empty": 0
+    }
+  },
+  "near_dup_pair_counts_before_cleaning": {
+    "A|A": 8568,
+    "B-train|B-train": 449,
+    "B-train|B-valid": 122,
+    "B-test|B-train": 106,
+    "B-test|B-valid": 20,
+    "B-valid|B-valid": 8,
+    "B-test|B-test": 6
+  },
+  "a_group_stats": {
+    "bitter_gourd": {
+      "images": 1400,
+      "groups": 891,
+      "largest_group": 46
+    },
+    "bottle_gourd": {
+      "images": 1400,
+      "groups": 877,
+      "largest_group": 24
+    },
+    "cabbage": {
+      "images": 1399,
+      "groups": 1176,
+      "largest_group": 9
+    },
+    "capsicum": {
+      "images": 1399,
+      "groups": 1048,
+      "largest_group": 13
+    },
+    "carrot": {
+      "images": 1400,
+      "groups": 813,
+      "largest_group": 60
+    },
+    "cauliflower": {
+      "images": 1400,
+      "groups": 1283,
+      "largest_group": 19
+    },
+    "cucumber": {
+      "images": 1400,
+      "groups": 979,
+      "largest_group": 50
+    },
+    "eggplant": {
+      "images": 1400,
+      "groups": 1194,
+      "largest_group": 36
+    },
+    "green_beans": {
+      "images": 1400,
+      "groups": 1153,
+      "largest_group": 24
+    },
+    "green_papaya": {
+      "images": 1400,
+      "groups": 860,
+      "largest_group": 47
+    },
+    "potato": {
+      "images": 1400,
+      "groups": 1252,
+      "largest_group": 22
+    },
+    "pumpkin": {
+      "images": 1399,
+      "groups": 1160,
+      "largest_group": 14
+    },
+    "radish": {
+      "images": 1400,
+      "groups": 1105,
+      "largest_group": 15
+    },
+    "tomato": {
+      "images": 1399,
+      "groups": 1367,
+      "largest_group": 11
+    }
+  },
+  "counts": {
+    "train": {
+      "images": 3492,
+      "from_A": 840,
+      "from_B": 2652,
+      "objects": 65628
+    },
+    "val": {
+      "images": 336,
+      "from_A": 0,
+      "from_B": 336,
+      "objects": 7988
+    },
+    "test": {
+      "images": 352,
+      "from_A": 0,
+      "from_B": 352,
+      "objects": 8438
+    }
+  },
+  "holdout_A": {
+    "val": {
+      "images": 1967,
+      "objects": 1967
+    },
+    "test": {
+      "images": 1974,
+      "objects": 1974
+    }
+  },
+  "underrepresented_severe": [
+    "green_banana"
+  ],
+  "underrepresented_moderate": [
+    "spring_onion",
+    "snake_gourd",
+    "radish"
+  ],
+  "median_train_objects_per_class": 2467,
+  "broccoli_images": 1400
+}

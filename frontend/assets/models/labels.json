@@ -1,0 +1,50 @@
+{
+ "model": "YOLO26s (Ultralytics 8.4.175) exported to ONNX opset 13",
+ "input": {
+  "name": "images",
+  "shape": [
+   1,
+   3,
+   640,
+   640
+  ],
+  "layout": "NCHW",
+  "color": "RGB",
+  "scale": "1/255",
+  "letterbox_pad_value": 114
+ },
+ "output": {
+  "name": "output0",
+  "shape": [
+   1,
+   26,
+   8400
+  ],
+  "layout": "cx,cy,w,h + 22 class scores (sigmoid)",
+  "nms": "required"
+ },
+ "names": [
+  "cucumber",
+  "tomato",
+  "green_beans",
+  "lemon",
+  "eggplant",
+  "green_chilli",
+  "turnip",
+  "coriander",
+  "pumpkin",
+  "potato",
+  "cauliflower",
+  "green_papaya",
+  "bitter_gourd",
+  "carrot",
+  "bottle_gourd",
+  "capsicum",
+  "beetroot",
+  "cabbage",
+  "spring_onion",
+  "snake_gourd",
+  "radish",
+  "green_banana"
+ ]
+}

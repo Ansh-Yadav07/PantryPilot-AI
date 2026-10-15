@@ -1,0 +1,90 @@
+========================================================
+PANTRYPILOT DATASET READY
+========================================================
+
+Source A (single-vegetable classification images, supplemental):
+  images: 21000   classes: 15 folders -> 14 in the 22-class model + broccoli
+  valid: 21000   invalid: 0   exact duplicates: 4   near-dup pairs: 8568
+  broccoli (excluded, kept in manifest): 1400
+  resolution: 224x224 (Source B is 640x360)
+  pooled & re-split by near-dup group 80/10/10 -> train pool 15655, val 1967, test 1974
+  used in combined train (cap 60/class): 840
+
+Source B (Bangladesh detection data, primary):
+  official images  train/val/test: 2828 / 354 / 352
+  classes: 22   objects: 86359   avg objects/image: 24.44
+  boxes clipped: train 8482, valid 1045, test 1111   exact-duplicate boxes removed: 80   invalid boxes rejected: 0
+  empty-annotation images kept as background: 6
+  leakage cleaning: removed 176 train and 18 val images that near-duplicate val/test images
+
+Combined:
+  train:  3492 images (2652 from B, 840 from A)    65628 objects
+  val  :   336 images (336 from B, 0 from A)     7988 objects
+  test :   352 images (352 from B, 0 from A)     8438 objects
+  Source-A-only holdout val: 1967 images (separate; NOT in combined val/test)
+  Source-A-only holdout test: 1974 images (separate; NOT in combined val/test)
+
+Class distribution (combined)   images train/val/test | objects train(B+A)/val/test
+  cucumber       1049/ 178/ 136 |  8188 (8128+60)/1811/1125
+  tomato         1708/ 158/ 210 |  9261 (9201+60)/ 916/1161
+  green_beans    1396/ 115/ 170 |  5912 (5852+60)/ 429/ 736
+  lemon          1242/ 151/ 155 |  4334 (4334+0)/ 628/ 544
+  eggplant       1172/ 127/ 142 |  3968 (3908+60)/ 401/ 556
+  green_chilli    678/ 128/  93 |  3589 (3589+0)/ 601/ 484
+  turnip          770/  46/  84 |  3250 (3250+0)/ 225/ 374
+  coriander      1094/ 216/ 162 |  2541 (2541+0)/ 594/ 428
+  pumpkin        1317/ 148/ 158 |  2552 (2492+60)/ 444/ 352
+  potato          716/  44/  70 |  2519 (2459+60)/ 180/ 248
+  cauliflower     737/  44/  87 |  2467 (2407+60)/ 134/ 342
+  green_papaya    865/  59/  99 |  2390 (2330+60)/ 182/ 296
+  bitter_gourd    999/  84/ 108 |  2413 (2353+60)/ 197/ 275
+  carrot          942/ 107/ 113 |  2367 (2307+60)/ 217/ 279
+  bottle_gourd    826/  89/  92 |  2118 (2058+60)/ 265/ 262
+  capsicum        376/  56/  44 |  1918 (1858+60)/ 323/ 266
+  beetroot        419/  30/  51 |  1318 (1318+0)/ 135/ 153
+  cabbage         616/  35/  83 |  1331 (1271+60)/  71/ 187
+  spring_onion    603/  44/  78 |  1137 (1137+0)/  63/ 129
+  snake_gourd     565/  44/  65 |   971 (971+0)/  65/ 118
+  radish          451/  22/  33 |   648 (588+60)/  53/  52
+  green_banana     96/  16/  16 |   436 (436+0)/  54/  71
+
+Potential problems:
+  1. FRAME-LEVEL LEAKAGE IN THE OFFICIAL SPLIT: all 10 train videos are also in val/test; 100.0% of test frames are within 5 frames of a train frame (median gap 1.0).
+     Official val/test scores will be OPTIMISTIC versus real phone/fridge photos. Remaining near-duplicate pairs were only removed at <=4 dHash bits; adjacent video frames still look alike.
+  2. OLD BASELINE COMPARABILITY: the old model's random split was drawn ONLY from official train; its old test (284 imgs) is now part of train. Do NOT compare the new model on the old test set. Compare both models on the new official test.
+  3. Underrepresented classes (train objects < 25% of median 2467): ['green_banana']; moderate (<50%): ['spring_onion', 'snake_gourd', 'radish']
+  4. Source A covers 14/22 classes only; it adds NO images for lemon, turnip, coriander, beetroot, spring_onion, snake_gourd, green_banana.
+  5. Source A full-image boxes teach 'one vegetable fills the frame'; kept to ~24% of training images / ~1% of objects to limit large-box false positives.
+  6. Source A is 224px, upscaled at imgsz=640 (blurrier than B frames).
+  7. Cross-source near-duplicates detected: {'A|A': 8568, 'B-train|B-train': 449, 'B-train|B-valid': 122, 'B-test|B-train': 106, 'B-test|B-valid': 20, 'B-valid|B-valid': 8, 'B-test|B-test': 6}
+
+Dataset path : /Volumes/Personal/Dataset(PantryPilot_AI)/PantryPilot_Combined_Dataset
+data.yaml    : /Volumes/Personal/Dataset(PantryPilot_AI)/PantryPilot_Combined_Dataset/data.yaml
+
+Validation checks:
+  [PASS] every image has a label file missing labels: 0
+  [PASS] every label has an image orphan labels: 0
+  [PASS] labels well-formed (5 fields) malformed: 0
+  [PASS] no NaN/inf coordinates nan: 0
+  [PASS] class ids within 0..21 bad: 0
+  [PASS] coordinates within [0,1] out of range: 0
+  [PASS] box width/height > 0 degenerate: 0
+  [PASS] manifest entries all exist on disk missing: 0
+  [PASS] manifest counts == files on disk {'train': 3492, 'val': 336, 'test': 352, 'A_holdout_val': 1967, 'A_holdout_test': 1974} vs {'train': 3492, 'val': 336, 'test': 352, 'A_holdout_val': 1967, 'A_holdout_test': 1974}
+  [PASS] copied images byte-identical to sources (md5) mismatches: 0
+  [PASS] no exact duplicates across splits groups crossing splits: 0
+  [PASS] no near-duplicates (dHash<=4) across splits crossing: 0   (same-split near-dups, harmless: 2228)
+  [PASS] Source B official split preserved (no reshuffle) misplaced: 0
+  [PASS] official TEST split fully intact 352/352
+  [PASS] official VAL: only leakage-flagged images removed 336 kept, 18 removed of 354
+  [PASS] official TRAIN: only leakage-flagged images removed 176 removed of 2828
+  [PASS] Source B labels match independent XML re-conversion mismatching files: 0
+  [PASS] Source A labels = full-image box with correct class bad: 0
+  [PASS] data.yaml: nc=22 and names match taxonomy nc=22
+  [PASS] data.yaml paths exist 
+  [PASS] broccoli not in model classes / labels 
+  [PASS] Ultralytics check_det_dataset parses data.yaml nc=22
+  [PASS] Ultralytics loads every image+label pair found=8121 empty(background)=6 corrupt=0 missing=0
+
+========================================================
+DATASET PREPARATION COMPLETE — READY FOR TRAINING

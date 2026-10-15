@@ -1,0 +1,226 @@
+{
+  "root": "/Volumes/Personal/Dataset(PantryPilot_AI)/Vegetable Object Detection Dataset from Bangladesh/Original Dataset",
+  "per_split": {
+    "train": {
+      "images": 2828,
+      "xml": 2828,
+      "missing_xml": 0,
+      "missing_image": 0,
+      "corrupt_images": 0,
+      "malformed_xml": 0,
+      "valid_objects": 69485,
+      "images_with_multiple_objects": 2814,
+      "empty_annotations": 6,
+      "invalid_boxes": 0,
+      "boxes_outside_image": 9105,
+      "xml_size_mismatch": 0,
+      "unknown_class_objects": 0,
+      "objects_per_image": {
+        "min": 0,
+        "max": 103,
+        "mean": 24.57
+      }
+    },
+    "valid": {
+      "images": 354,
+      "xml": 354,
+      "missing_xml": 0,
+      "missing_image": 0,
+      "corrupt_images": 0,
+      "malformed_xml": 0,
+      "valid_objects": 8428,
+      "images_with_multiple_objects": 353,
+      "empty_annotations": 1,
+      "invalid_boxes": 0,
+      "boxes_outside_image": 1101,
+      "xml_size_mismatch": 0,
+      "unknown_class_objects": 0,
+      "objects_per_image": {
+        "min": 0,
+        "max": 71,
+        "mean": 23.81
+      }
+    },
+    "test": {
+      "images": 352,
+      "xml": 352,
+      "missing_xml": 0,
+      "missing_image": 0,
+      "corrupt_images": 0,
+      "malformed_xml": 0,
+      "valid_objects": 8446,
+      "images_with_multiple_objects": 351,
+      "empty_annotations": 0,
+      "invalid_boxes": 0,
+      "boxes_outside_image": 1111,
+      "xml_size_mismatch": 0,
+      "unknown_class_objects": 0,
+      "objects_per_image": {
+        "min": 1,
+        "max": 76,
+        "mean": 23.99
+      }
+    }
+  },
+  "num_classes_found": 22,
+  "unknown_class_names": {},
+  "objects_per_class": {
+    "train": {
+      "green_papaya": 2436,
+      "cabbage": 1333,
+      "pumpkin": 2744,
+      "tomato": 9515,
+      "potato": 2510,
+      "snake_gourd": 1017,
+      "cauliflower": 2505,
+      "bitter_gourd": 2408,
+      "bottle_gourd": 2149,
+      "eggplant": 4280,
+      "green_beans": 6025,
+      "spring_onion": 1188,
+      "turnip": 3354,
+      "lemon": 4778,
+      "green_chilli": 4097,
+      "cucumber": 9555,
+      "carrot": 2360,
+      "coriander": 2937,
+      "beetroot": 1343,
+      "capsicum": 1879,
+      "radish": 616,
+      "green_banana": 456
+    },
+    "valid": {
+      "bottle_gourd": 271,
+      "green_beans": 440,
+      "cauliflower": 138,
+      "tomato": 936,
+      "green_chilli": 666,
+      "potato": 180,
+      "carrot": 222,
+      "coriander": 629,
+      "pumpkin": 459,
+      "eggplant": 437,
+      "lemon": 700,
+      "turnip": 231,
+      "spring_onion": 65,
+      "bitter_gourd": 203,
+      "snake_gourd": 66,
+      "green_papaya": 185,
+      "cabbage": 73,
+      "beetroot": 135,
+      "cucumber": 1954,
+      "radish": 53,
+      "capsicum": 326,
+      "green_banana": 59
+    },
+    "test": {
+      "tomato": 1161,
+      "pumpkin": 352,
+      "green_papaya": 297,
+      "snake_gourd": 118,
+      "cauliflower": 343,
+      "cabbage": 187,
+      "spring_onion": 129,
+      "eggplant": 558,
+      "green_beans": 736,
+      "green_chilli": 484,
+      "potato": 248,
+      "turnip": 374,
+      "lemon": 545,
+      "coriander": 428,
+      "carrot": 279,
+      "cucumber": 1126,
+      "bitter_gourd": 277,
+      "radish": 52,
+      "bottle_gourd": 262,
+      "beetroot": 153,
+      "green_banana": 71,
+      "capsicum": 266
+    }
+  },
+  "objects_per_class_total": {
+    "green_papaya": 2918,
+    "cabbage": 1593,
+    "pumpkin": 3555,
+    "tomato": 11612,
+    "potato": 2938,
+    "snake_gourd": 1201,
+    "cauliflower": 2986,
+    "bitter_gourd": 2888,
+    "bottle_gourd": 2682,
+    "eggplant": 5275,
+    "green_beans": 7201,
+    "spring_onion": 1382,
+    "turnip": 3959,
+    "lemon": 6023,
+    "green_chilli": 5247,
+    "cucumber": 12635,
+    "carrot": 2861,
+    "coriander": 3994,
+    "beetroot": 1631,
+    "capsicum": 2471,
+    "radish": 721,
+    "green_banana": 586
+  },
+  "objects_per_image_overall": {
+    "min": 0,
+    "max": 103,
+    "mean": 24.44
+  },
+  "exact_duplicate_groups": 0,
+  "exact_duplicate_groups_across_splits": 0,
+  "near_duplicate_pairs": 711,
+  "near_duplicate_pairs_by_split_pair": {
+    "train|train": 449,
+    "test|train": 106,
+    "train|valid": 122,
+    "test|valid": 20,
+    "valid|valid": 8,
+    "test|test": 6
+  },
+  "video_overlap": {
+    "train&valid": 6,
+    "train&test": 10,
+    "valid&test": 6,
+    "videos_per_split": {
+      "train": 10,
+      "valid": 6,
+      "test": 10
+    }
+  },
+  "nearest_train_frame_gap": {
+    "valid": {
+      "n": 354,
+      "median": 1.0,
+      "pct_within_5_frames": 100.0
+    },
+    "test": {
+      "n": 352,
+      "median": 1.0,
+      "pct_within_5_frames": 100.0
+    }
+  },
+  "old_baseline_split_provenance": {
+    "train": {
+      "n": 2262,
+      "from_official": {
+        "train": 2262
+      }
+    },
+    "val": {
+      "n": 282,
+      "from_official": {
+        "train": 282
+      }
+    },
+    "test": {
+      "n": 284,
+      "from_official": {
+        "train": 284
+      }
+    }
+  },
+  "malformed_examples": [],
+  "invalid_box_examples": [],
+  "size_mismatch_examples": []
+}

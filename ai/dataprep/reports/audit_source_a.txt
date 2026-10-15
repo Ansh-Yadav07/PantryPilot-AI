@@ -1,0 +1,43 @@
+======================================================================
+SOURCE A AUDIT — single-vegetable classification images
+======================================================================
+Root                 : /Volumes/Personal/Dataset(PantryPilot_AI)/Vegetable Images 2
+Total image files    : 21000
+Valid / Invalid      : 21000 / 0  (corrupted or unreadable)
+Extensions           : {'.jpg': 21000}
+Decoded formats      : {'JPEG': 21000}   color modes: {'RGB': 21000}
+Original splits      : {'test': 3000, 'train': 15000, 'validation': 3000}   (will be re-split by hash group)
+
+Dimensions
+  width  min/max/mean: {'min': 224, 'max': 224, 'mean': 224.0}
+  height min/max/mean: {'min': 187, 'max': 224, 'mean': 224.0}
+  most common sizes  : [('224x224', 20991), ('224x207', 1), ('224x193', 1), ('224x205', 1), ('224x200', 1)]
+
+Duplicates
+  exact (identical md5) groups      : 4  -> 4 redundant files
+  identical perceptual-hash groups  : 318
+  near-duplicate pairs (dHash<=4)   : 8568
+     of which across different classes : 0  (label-noise risk)
+     of which across original splits   : 3757  (leakage in the source's own split)
+
+Class folder  -> class        Image Count   Valid  Invalid Duplicate
+----------------------------------------------------------------------
+Bean          green_beans            1400    1400        0         0
+Bitter_Gourd  bitter_gourd           1400    1400        0         0
+Bottle_Gourd  bottle_gourd           1400    1400        0         0
+Brinjal       eggplant               1400    1400        0         0
+Broccoli      broccoli               1400    1400        0         0   <-- NOT in 22-class taxonomy
+Cabbage       cabbage                1400    1400        0         1
+Capsicum      capsicum               1400    1400        0         1
+Carrot        carrot                 1400    1400        0         0
+Cauliflower   cauliflower            1400    1400        0         0
+Cucumber      cucumber               1400    1400        0         0
+Papaya        green_papaya           1400    1400        0         0
+Potato        potato                 1400    1400        0         0
+Pumpkin       pumpkin                1400    1400        0         1
+Radish        radish                 1400    1400        0         0
+Tomato        tomato                 1400    1400        0         1
+----------------------------------------------------------------------
+TOTAL                               21000   21000        0         4
+
+BROCCOLI images (reported separately, excluded from 22-class model): 1400

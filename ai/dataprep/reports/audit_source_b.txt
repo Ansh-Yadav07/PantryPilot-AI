@@ -1,0 +1,64 @@
+========================================================================
+SOURCE B AUDIT — Bangladesh multi-object detection dataset
+========================================================================
+Root: /Volumes/Personal/Dataset(PantryPilot_AI)/Vegetable Object Detection Dataset from Bangladesh/Original Dataset
+
+                                   train     valid      test
+images                              2828       354       352
+xml files                           2828       354       352
+missing xml                            0         0         0
+missing image                          0         0         0
+corrupt images                         0         0         0
+malformed xml                          0         0         0
+valid objects                      69485      8428      8446
+images w/ multiple objects          2814       353       351
+empty annotations                      6         1         0
+invalid boxes (xmax<=xmin..)           0         0         0
+boxes outside image (clip)          9105      1101      1111
+xml size != image size                 0         0         0
+unknown class objects                  0         0         0
+objects/image min                      0         0         1
+objects/image max                    103        71        76
+objects/image mean                 24.57     23.81     23.99
+
+Classes found: 22   unknown XML names: none
+Overall objects/image: {'min': 0, 'max': 103, 'mean': 24.44}
+
+Objects per class
+class              train    valid     test    total
+cucumber            9555     1954     1126    12635
+tomato              9515      936     1161    11612
+green_beans         6025      440      736     7201
+lemon               4778      700      545     6023
+eggplant            4280      437      558     5275
+green_chilli        4097      666      484     5247
+turnip              3354      231      374     3959
+coriander           2937      629      428     3994
+pumpkin             2744      459      352     3555
+potato              2510      180      248     2938
+cauliflower         2505      138      343     2986
+green_papaya        2436      185      297     2918
+bitter_gourd        2408      203      277     2888
+carrot              2360      222      279     2861
+bottle_gourd        2149      271      262     2682
+capsicum            1879      326      266     2471
+beetroot            1343      135      153     1631
+cabbage             1333       73      187     1593
+spring_onion        1188       65      129     1382
+snake_gourd         1017       66      118     1201
+radish               616       53       52      721
+green_banana         456       59       71      586
+TOTAL              69485     8428     8446    86359
+
+LEAKAGE BETWEEN OFFICIAL SPLITS
+  exact duplicate groups            : 0 (crossing splits: 0)
+  near-duplicate pairs (dHash<=4)   : 711  by split pair: {('train', 'train'): 449, ('test', 'train'): 106, ('train', 'valid'): 122, ('test', 'valid'): 20, ('valid', 'valid'): 8, ('test', 'test'): 6}
+  videos per split                  : {'train': 10, 'valid': 6, 'test': 10}
+  videos shared train&valid/test    : 6 / 10
+  valid: median gap to nearest TRAIN frame of same video = 1.0 frames; 100.0% within 5 frames
+  test: median gap to nearest TRAIN frame of same video = 1.0 frames; 100.0% within 5 frames
+
+OLD BASELINE SPLIT PROVENANCE (PantryPilot_Dataset -> official split of each image)
+  old train (2262 imgs) came from official: {'train': 2262}
+  old val   (282 imgs) came from official: {'train': 282}
+  old test  (284 imgs) came from official: {'train': 284}

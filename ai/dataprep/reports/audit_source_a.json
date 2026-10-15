@@ -1,0 +1,209 @@
+{
+  "root": "/Volumes/Personal/Dataset(PantryPilot_AI)/Vegetable Images 2",
+  "total_images": 21000,
+  "valid": 21000,
+  "invalid": 0,
+  "formats": {
+    "JPEG": 21000
+  },
+  "extensions": {
+    ".jpg": 21000
+  },
+  "color_modes": {
+    "RGB": 21000
+  },
+  "original_splits": {
+    "test": 3000,
+    "train": 15000,
+    "validation": 3000
+  },
+  "exact_duplicate_groups": 4,
+  "exact_duplicate_extra_files": 4,
+  "identical_dhash_groups": 318,
+  "near_duplicate_pairs_hamming<=4": 8568,
+  "near_duplicate_pairs_across_different_classes": 0,
+  "near_duplicate_pairs_across_original_splits": 3757,
+  "width": {
+    "min": 224,
+    "max": 224,
+    "mean": 224.0
+  },
+  "height": {
+    "min": 187,
+    "max": 224,
+    "mean": 224.0
+  },
+  "top_dimensions": [
+    [
+      "224x224",
+      20991
+    ],
+    [
+      "224x207",
+      1
+    ],
+    [
+      "224x193",
+      1
+    ],
+    [
+      "224x205",
+      1
+    ],
+    [
+      "224x200",
+      1
+    ],
+    [
+      "224x211",
+      1
+    ],
+    [
+      "224x198",
+      1
+    ],
+    [
+      "224x210",
+      1
+    ]
+  ],
+  "broccoli_images": 1400,
+  "invalid_examples": [],
+  "per_class": [
+    {
+      "folder": "Bean",
+      "class": "green_beans",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 0,
+      "in_22_class_model": true
+    },
+    {
+      "folder": "Bitter_Gourd",
+      "class": "bitter_gourd",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 0,
+      "in_22_class_model": true
+    },
+    {
+      "folder": "Bottle_Gourd",
+      "class": "bottle_gourd",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 0,
+      "in_22_class_model": true
+    },
+    {
+      "folder": "Brinjal",
+      "class": "eggplant",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 0,
+      "in_22_class_model": true
+    },
+    {
+      "folder": "Broccoli",
+      "class": "broccoli",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 0,
+      "in_22_class_model": false
+    },
+    {
+      "folder": "Cabbage",
+      "class": "cabbage",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 1,
+      "in_22_class_model": true
+    },
+    {
+      "folder": "Capsicum",
+      "class": "capsicum",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 1,
+      "in_22_class_model": true
+    },
+    {
+      "folder": "Carrot",
+      "class": "carrot",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 0,
+      "in_22_class_model": true
+    },
+    {
+      "folder": "Cauliflower",
+      "class": "cauliflower",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 0,
+      "in_22_class_model": true
+    },
+    {
+      "folder": "Cucumber",
+      "class": "cucumber",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 0,
+      "in_22_class_model": true
+    },
+    {
+      "folder": "Papaya",
+      "class": "green_papaya",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 0,
+      "in_22_class_model": true
+    },
+    {
+      "folder": "Potato",
+      "class": "potato",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 0,
+      "in_22_class_model": true
+    },
+    {
+      "folder": "Pumpkin",
+      "class": "pumpkin",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 1,
+      "in_22_class_model": true
+    },
+    {
+      "folder": "Radish",
+      "class": "radish",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 0,
+      "in_22_class_model": true
+    },
+    {
+      "folder": "Tomato",
+      "class": "tomato",
+      "count": 1400,
+      "valid": 1400,
+      "invalid": 0,
+      "duplicate": 1,
+      "in_22_class_model": true
+    }
+  ]
+}

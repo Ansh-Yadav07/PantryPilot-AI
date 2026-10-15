@@ -1,0 +1,6 @@
+# Optional: only for training / exporting the YOLO model or running
+# server-side detection locally. Not installed in the cloud image.
+ultralytics
+opencv-python-headless
+onnx
+onnxruntime
