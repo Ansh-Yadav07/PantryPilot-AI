@@ -1,0 +1,41 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+key.properties
+
+# Python
+.venv/
+.venv-*/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Flutter / Dart
+.dart_tool/
+build/
+*.iml
+.flutter-plugins-dependencies
+
+# Local test artifacts
+.pytest_cache/
+htmlcov/
+
+# Tooling / OS
+node_modules/
+*.log
+.idea/
+.vscode/
+.DS_Store
+
+# AI / ML (large artifacts; the app ships frontend/assets/models/best.onnx)
+ai/.venv/
+ai/data/
+ai/runs/
+ai/*.pt
+ai/dataprep/cache/
+backend/models/
+coverage/

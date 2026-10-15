@@ -1,0 +1,5 @@
+# Keep binary assets out of text diffs
+*.onnx binary
+*.ttf binary
+*.jpg binary
+*.png binary
