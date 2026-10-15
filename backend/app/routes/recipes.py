@@ -24,6 +24,8 @@ class RecipeRequest(BaseModel):
     dietary_preferences: List[str] = Field(default_factory=list, max_length=10)
     prioritize_expiring: bool = True
     include_expired: bool = False
+    # Names of recipes already shown, so "suggest new" gives different ideas.
+    exclude_recipes: List[str] = Field(default_factory=list, max_length=30)
 
 
 @router.post("/recommend")
@@ -58,6 +60,7 @@ def recommend_recipes(request: RecipeRequest, user_id: str = Depends(get_current
             ingredients=[c["name"] for c in context], pantry_context=context,
             servings=request.servings, max_cooking_time=request.max_cooking_time,
             dietary_preferences=request.dietary_preferences,
+            exclude=request.exclude_recipes,
         )
     except GeminiNotConfigured:
         raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE,

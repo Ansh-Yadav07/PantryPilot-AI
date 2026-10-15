@@ -68,3 +68,23 @@ def test_image_sniffing():
     assert sniff_image_type(b"\x89PNG\r\n\x1a\nrest") == "image/png"
     assert sniff_image_type(b"RIFF\x00\x00\x00\x00WEBPVP8 ") == "image/webp"
     assert sniff_image_type(b"%PDF-1.4") == ""
+
+
+def test_recipe_requests_ask_for_variety_and_skip_seen_recipes(monkeypatch):
+    from app.services import gemini_service
+    captured = {}
+
+    def fake_generate_json(parts, **kw):
+        captured["prompt"] = parts[0]
+        return [
+            {"name": "Tomato Potato Hash", "ingredients_used": ["Tomato"], "steps": ["Cook."]},
+            {"name": "Lemon Rice", "ingredients_used": ["Lemon"], "steps": ["Cook."]},
+        ]
+
+    monkeypatch.setattr(gemini_service.gemini_client, "generate_json", fake_generate_json)
+    monkeypatch.setattr(gemini_service.MealDBService, "exact_match", lambda name: None)
+    recipes = gemini_service.GeminiService.recommend_recipes(
+        ["Tomato", "Lemon"], exclude=["tomato  potato hash"])
+    assert "Do NOT suggest them" in captured["prompt"] and "tomato  potato hash" in captured["prompt"]
+    assert "recipe 1:" in captured["prompt"]
+    assert [r["name"] for r in recipes] == ["Lemon Rice"]

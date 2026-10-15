@@ -28,6 +28,8 @@ class _RecipesScreenState extends State<RecipesScreen> {
   String? _error;
   String? _message;
   List<Map<String, dynamic>>? _recipes;
+  // Recipes already shown this session; sent back so new suggestions differ.
+  final List<String> _seen = [];
 
   Future<void> _generate() async {
     if (_loading) return;
@@ -42,10 +44,15 @@ class _RecipesScreenState extends State<RecipesScreen> {
         servings: _servings,
         maxCookingTime: _maxTime,
         dietaryPreferences: _dietSel.toList(),
+        excludeRecipes: _seen.reversed.take(30).toList(),
       );
       setState(() {
         _recipes = (res['recipes'] as List? ?? []).map((e) => Map<String, dynamic>.from(e as Map)).toList();
         _message = res['message']?.toString();
+        for (final r in _recipes!) {
+          final name = r['name']?.toString();
+          if (name != null && !_seen.contains(name)) _seen.add(name);
+        }
       });
     } on ApiException catch (e) {
       setState(() => _error = e.message);

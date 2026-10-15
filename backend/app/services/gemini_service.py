@@ -6,6 +6,7 @@ GeminiError / GeminiNotConfigured and the API responds with a clear error.
 """
 
 import logging
+import random
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from typing import Any, Dict, List, Optional
@@ -108,6 +109,28 @@ def _clean_receipt(raw: Any) -> Dict[str, Any]:
     }
 
 
+RECIPE_STYLES = [
+    "North Indian home-style sabzi or curry",
+    "South Indian style (poriyal, kootu, sambar or thoran)",
+    "dal or lentil-based dish",
+    "rice dish (pulao, khichdi or fried rice)",
+    "soup or light stew",
+    "salad or raita",
+    "stuffed or roasted vegetables",
+    "quick stir-fry",
+    "street-food style snack (tikki, pakora, chaat)",
+    "flatbread, paratha or wrap filling",
+    "Mediterranean-inspired dish",
+    "East Asian-inspired dish",
+    "baked or one-pot dish",
+    "chutney, pickle-style side or dip",
+]
+
+
+def _norm(name: str) -> str:
+    return " ".join(str(name).lower().replace("&", "and").split())
+
+
 class GeminiService:
     @staticmethod
     def process_receipt_image(image_bytes: bytes, mime_type: str) -> Dict[str, Any]:
@@ -126,6 +149,7 @@ class GeminiService:
         max_cooking_time: Optional[int] = None,
         dietary_preferences: Optional[List[str]] = None,
         count: int = 3,
+        exclude: Optional[List[str]] = None,
     ) -> List[Dict[str, Any]]:
         pantry_lines = []
         for item in pantry_context or [{"name": n} for n in ingredients]:
@@ -143,6 +167,15 @@ class GeminiService:
         if dietary_preferences:
             constraints.append(f"- Dietary requirements: {', '.join(dietary_preferences)}.")
 
+        # Steer each request towards different cooking styles, so asking again
+        # gives genuinely new ideas instead of the same top-probability dishes.
+        styles = random.sample(RECIPE_STYLES, k=min(count, len(RECIPE_STYLES)))
+        style_text = "; ".join(f"recipe {i + 1}: {s}" for i, s in enumerate(styles))
+        exclude = [e.strip() for e in (exclude or []) if e and e.strip()][:30]
+        exclude_text = ("\nThe user has already seen these recipes. Do NOT suggest them or close "
+                        "variations of them (same main ingredients cooked the same way):\n"
+                        + "\n".join(f"- {e}" for e in exclude)) if exclude else ""
+
         prompt = f"""You are an experienced home-cooking chef.
 
 The user's pantry contains:
@@ -151,10 +184,14 @@ The user's pantry contains:
 Servings: {servings}
 {chr(10).join(constraints)}
 
-Suggest {count} different, realistic recipes that use PRIMARILY these pantry
-ingredients, giving priority to items that expire soonest. Assume only basic
-staples (salt, pepper, oil, water) are available beyond the list; anything else
-goes in missing_ingredients.
+Suggest {count} realistic recipes that use PRIMARILY these pantry ingredients,
+giving priority to items that expire soonest. Assume only basic staples (salt,
+pepper, oil, water) are available beyond the list; anything else goes in
+missing_ingredients.
+
+Make the recipes clearly different from each other: build each one around a
+different main pantry ingredient where possible, and use these styles —
+{style_text}.{exclude_text}
 
 Return a JSON array; each element has exactly these keys:
 - "name": string
@@ -167,7 +204,7 @@ Return a JSON array; each element has exactly these keys:
 - "calories": string, approximate per serving, e.g. "350 kcal"
 - "steps": array of strings, each one clear cooking step"""
 
-        parsed = gemini_client.generate_json([prompt], timeout=60.0, temperature=0.7)
+        parsed = gemini_client.generate_json([prompt], timeout=60.0, temperature=1.0)
         if isinstance(parsed, dict):
             parsed = parsed.get("recipes") or [parsed]
         if not isinstance(parsed, list):
@@ -209,6 +246,9 @@ Return a JSON array; each element has exactly these keys:
             recipe["image_url"] = meta.get("image_url") if meta else None
             recipe["video_url"] = meta.get("video_url") if meta else None
 
+        seen = {_norm(e) for e in exclude}
+        fresh = [r for r in recipes if _norm(r["name"]) not in seen]
+        recipes = fresh or recipes
         if not recipes:
             raise GeminiError("The AI service did not return any usable recipes. Please try again.")
         return recipes

@@ -95,6 +95,7 @@ class ApiService {
     int servings = 2,
     int? maxCookingTime,
     List<String> dietaryPreferences = const [],
+    List<String> excludeRecipes = const [],
   }) async =>
       Map<String, dynamic>.from(await _c.post('/recipes/recommend',
           body: {
@@ -102,6 +103,7 @@ class ApiService {
             'servings': servings,
             if (maxCookingTime != null) 'max_cooking_time': maxCookingTime,
             'dietary_preferences': dietaryPreferences,
+            if (excludeRecipes.isNotEmpty) 'exclude_recipes': excludeRecipes,
           },
           timeout: const Duration(seconds: 90)));
 
