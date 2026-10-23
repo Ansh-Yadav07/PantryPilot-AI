@@ -39,3 +39,6 @@ ai/*.pt
 ai/dataprep/cache/
 backend/models/
 coverage/
+
+# Launch video output (contains demo-account login)
+brag-output*/
